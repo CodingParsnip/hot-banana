@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6jh6mij3e7fc"]
+
+[ext_resource type="PackedScene" uid="uid://cfu3mhdroag8y" path="res://obstacle.tscn" id="1_vtxm0"]
+
+[node name="duo-obstacle" type="StaticBody2D"]
+position = Vector2(0, 96)
+
+[node name="obstacle2" parent="." instance=ExtResource("1_vtxm0")]
+position = Vector2(1096, 296)
+rotation = -3.14159
+
+[node name="obstacle" parent="." instance=ExtResource("1_vtxm0")]
+position = Vector2(-8, 152)

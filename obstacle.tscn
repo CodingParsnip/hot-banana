@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfu3mhdroag8y"]
+
+[ext_resource type="Script" path="res://obstacle.gd" id="1_5xdqt"]
+[ext_resource type="PackedScene" uid="uid://dyhbsxm4lc7xy" path="res://tile_map.tscn" id="1_nagf3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r02dj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0onjd"]
+size = Vector2(63.5, 320)
+
+[node name="obstacle" type="StaticBody2D" groups=["obstacles"]]
+script = ExtResource("1_5xdqt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(72, -184)
+sprite_frames = SubResource("SpriteFrames_r02dj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(552.25, 328)
+shape = SubResource("RectangleShape2D_0onjd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(8, -152)
+
+[node name="TileMap" parent="." instance=ExtResource("1_nagf3")]
+position = Vector2(520, 168)
+layer_0/tile_data = PackedInt32Array(0, 262144, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0)
