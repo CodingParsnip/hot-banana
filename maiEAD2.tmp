@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq7vu63lchyyb"]
+[gd_scene load_steps=5 format=3 uid="uid://cq7vu63lchyyb"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_26r1g"]
 [ext_resource type="PackedScene" uid="uid://g3dapvh8ixxg" path="res://player.tscn" id="2_w7rao"]
 [ext_resource type="PackedScene" uid="uid://cfu3mhdroag8y" path="res://obstacle.tscn" id="3_b2luw"]
 [ext_resource type="PackedScene" uid="uid://die842iuuvaxw" path="res://death_screen.tscn" id="4_rg6n7"]
-[ext_resource type="PackedScene" uid="uid://bdnlv72sn0f1a" path="res://start_screen.tscn" id="5_4jnh6"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_26r1g")
@@ -19,11 +18,3 @@ position = Vector2(192, 128)
 anchor_mode = 0
 
 [node name="deathScreen" parent="." instance=ExtResource("4_rg6n7")]
-
-[node name="startScreen" parent="." instance=ExtResource("5_4jnh6")]
-
-[node name="startTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
-[connection signal="timeout" from="startTimer" to="." method="_on_start_timer_timeout"]
