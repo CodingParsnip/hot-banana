@@ -45,14 +45,11 @@ func _physics_process(delta):
 		move_and_slide()
 		var collision = get_last_slide_collision()
 		if collision:
-			var hit = collision.get_collider()
-			if hit.name.contains("obstacle"):
-				print(hit.name)
+			var touch = collision.get_collider()
+			if touch.name.contains("obstacle"):
+				print(touch.name)
 				emit_signal("hit")
 				$AnimatedSprite2D.play("death")
-
-
-
 
 
 func _on_jump_anim_timer_timeout():

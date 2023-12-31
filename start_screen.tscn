@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdnlv72sn0f1a"]
+[gd_scene load_steps=4 format=3 uid="uid://bdnlv72sn0f1a"]
 
 [ext_resource type="Script" path="res://start_screen.gd" id="1_rf6fy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4gfe"]
+bg_color = Color(0, 0, 0, 0.372549)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 20.0
+expand_margin_top = 5.0
+expand_margin_right = 20.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3r5xh"]
+bg_color = Color(0, 0, 0, 0.54902)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 20.0
+expand_margin_top = 5.0
+expand_margin_right = 20.0
+expand_margin_bottom = 5.0
 
 [node name="startScreen" type="Control"]
 layout_mode = 3
@@ -30,14 +53,16 @@ alignment = 1
 
 [node name="title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
 text = "HOT BANANA"
 
 [node name="startButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4gfe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3r5xh")
 text = "START!"
-
-[node name="countdown" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/startButton" to="." method="_on_button_pressed"]

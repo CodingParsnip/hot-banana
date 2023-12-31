@@ -53,7 +53,7 @@ script = ExtResource("1_xq8jh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_b53ws")
-animation = &"death"
+animation = &"jump"
 
 [node name="collission-face1" type="CollisionShape2D" parent="."]
 position = Vector2(1.78003, 16.095)
@@ -76,7 +76,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="JumpButtonTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.45
 one_shot = true
 
 [connection signal="timeout" from="JumpAnimTimer" to="." method="_on_jump_anim_timer_timeout"]
