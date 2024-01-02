@@ -16,8 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (countdown > 0 && !$startScreen.visible):
-		countdown -= delta
+	pass
 	
 
 # Make scene ready for gameplay (render player, mobs, lives, points, etc)
