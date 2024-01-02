@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://2odluelo2gov"]
+
+[ext_resource type="PackedScene" uid="uid://cfu3mhdroag8y" path="res://obstacle.tscn" id="1_5f6ms"]
+
+[node name="StartingLine" type="Node2D"]
+position = Vector2(440, 208)
+
+[node name="obstacle" parent="." instance=ExtResource("1_5f6ms")]
+position = Vector2(-256, 48)
+
+[node name="obstacle2" parent="." instance=ExtResource("1_5f6ms")]
+position = Vector2(848, 88)
+rotation = -3.14159
+
+[node name="obstacle3" parent="." instance=ExtResource("1_5f6ms")]
+position = Vector2(1104, 24)
+rotation = 3.14159
+
+[node name="obstacle4" parent="." instance=ExtResource("1_5f6ms")]
+position = Vector2(0, 104)

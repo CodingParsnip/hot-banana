@@ -7,9 +7,9 @@ var countdown = 3
 func _ready():
 	$deathScreen.visible = false
 	$startScreen.visible = true
-	$CharacterBody2D.connect("hit", _on_player_hit)
-	$CharacterBody2D.visible = false
-	$obstacle.visible = false
+	$Player.connect("hit", _on_player_hit)
+	$Player.visible = false
+	$StartingLine.visible = false
 	
 	$startScreen.connect("startPressed", _on_start_pressed)
 
@@ -18,12 +18,13 @@ func _ready():
 func _process(delta):
 	if (countdown > 0 && !$startScreen.visible):
 		countdown -= delta
-	
+		get_node("countdownTimer").text = str(int(countdown + 1))
 
 # Make scene ready for gameplay (render player, mobs, lives, points, etc)
 func start_game():
-	$CharacterBody2D.freeze = false
-	$CharacterBody2D.visible = true
+	$Player.freeze = false
+	$Player.visible = true
+	$StartingLine.visible = true
 	print("ASS")
 	
 
@@ -32,11 +33,15 @@ func _on_player_hit():
 
 func _on_start_pressed():
 	$startScreen.visible = false
-	$startTimer.start()
-	$CharacterBody2D.visible = true
-	get_node("countdownTimer").show()
+	
 	get_node("countdownTimer").text = str(int(countdown))
-
+	get_node("countdownTimer").show()
+	
+	
+	$Player.visible = true
+	$StartingLine.visible = true
+	
+	$startTimer.start()
 
 func _on_start_timer_timeout():
 	start_game()

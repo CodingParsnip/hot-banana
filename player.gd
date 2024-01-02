@@ -15,13 +15,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _physics_process(delta):
-	
-	if (!freeze):
+	#When no longer frozen, add gravity and handle inputs
+	if (!freeze):		
+		velocity.x = move_toward(velocity.x, 500, SPEED)
 		motion.y += GRAVITY
-		# Add the gravity.
 		if not is_on_floor():
 			velocity.y += gravity * delta
-
 
 		# Handle jump.
 		if Input.is_action_pressed("ui_accept") and $JumpButtonTimer.is_stopped():
@@ -30,23 +29,11 @@ func _physics_process(delta):
 			$JumpAnimTimer.start()
 			$JumpButtonTimer.start()
 
-
-
-
-		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		var direction = Input.get_axis("ui_left", "ui_right")
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-
-
 		move_and_slide()
 		var collision = get_last_slide_collision()
 		if collision:
 			var touch = collision.get_collider()
-			if touch.name.contains("obstacle"):
+			if touch.name.contains("obstacle") || touch.name.contains("floor"):
 				print(touch.name)
 				emit_signal("hit")
 				$AnimatedSprite2D.play("death")
