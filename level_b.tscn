@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://ncnle0420i65"]
+
+[ext_resource type="PackedScene" uid="uid://cfu3mhdroag8y" path="res://obstacle.tscn" id="1_ti24d"]
+
+[node name="LevelB" type="Node2D"]
+
+[node name="obstacle" parent="." instance=ExtResource("1_ti24d")]
+position = Vector2(-392, 280)
+
+[node name="obstacle2" parent="." instance=ExtResource("1_ti24d")]
+position = Vector2(712, 264)
+rotation = 3.14159
+
+[node name="obstacle3" parent="." instance=ExtResource("1_ti24d")]
+position = Vector2(-136, 152)
+
+[node name="obstacle4" parent="." instance=ExtResource("1_ti24d")]
+position = Vector2(968, 288)
+rotation = 3.14159
+
+[node name="obstacle5" parent="." instance=ExtResource("1_ti24d")]
+position = Vector2(184, 264)
+
+[node name="obstacle6" parent="." instance=ExtResource("1_ti24d")]
+position = Vector2(1288, 464)
+rotation = 3.14159
+
+[node name="obstacle7" parent="." instance=ExtResource("1_ti24d")]
+position = Vector2(440, 384)
+
+[node name="obstacle8" parent="." instance=ExtResource("1_ti24d")]
+position = Vector2(1544, 464)
+rotation = -3.14159

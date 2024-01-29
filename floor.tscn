@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://nybgv6crdtve"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sbup8"]
+
+[node name="floor" type="StaticBody2D"]
+position = Vector2(-109, 152)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(301, 496)
+shape = SubResource("WorldBoundaryShape2D_sbup8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(309, 488)

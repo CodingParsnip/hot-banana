@@ -1,22 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq7vu63lchyyb"]
+[gd_scene load_steps=9 format=3 uid="uid://cq7vu63lchyyb"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_26r1g"]
+[ext_resource type="PackedScene" uid="uid://2odluelo2gov" path="res://starting_line.tscn" id="2_bhw84"]
 [ext_resource type="PackedScene" uid="uid://g3dapvh8ixxg" path="res://player.tscn" id="2_w7rao"]
-[ext_resource type="PackedScene" uid="uid://cfu3mhdroag8y" path="res://obstacle.tscn" id="3_b2luw"]
+[ext_resource type="PackedScene" uid="uid://nybgv6crdtve" path="res://floor.tscn" id="3_1tdoo"]
+[ext_resource type="Script" path="res://floor.gd" id="4_oe857"]
 [ext_resource type="PackedScene" uid="uid://die842iuuvaxw" path="res://death_screen.tscn" id="4_rg6n7"]
 [ext_resource type="PackedScene" uid="uid://bdnlv72sn0f1a" path="res://start_screen.tscn" id="5_4jnh6"]
+[ext_resource type="Script" path="res://game_camera.gd" id="6_l5ai2"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_26r1g")
 
-[node name="obstacle" parent="." instance=ExtResource("3_b2luw")]
-position = Vector2(-109, 152)
+[node name="StartingLine" parent="." instance=ExtResource("2_bhw84")]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_w7rao")]
-position = Vector2(192, 128)
+[node name="Player" parent="." instance=ExtResource("2_w7rao")]
+position = Vector2(64, 136)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="floor" parent="." instance=ExtResource("3_1tdoo")]
+script = ExtResource("4_oe857")
+
+[node name="GameCamera" type="Camera2D" parent="."]
 anchor_mode = 0
+script = ExtResource("6_l5ai2")
 
 [node name="deathScreen" parent="." instance=ExtResource("4_rg6n7")]
 

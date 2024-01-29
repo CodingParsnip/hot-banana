@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdnlv72sn0f1a"]
+[gd_scene load_steps=5 format=3 uid="uid://bdnlv72sn0f1a"]
 
 [ext_resource type="Script" path="res://start_screen.gd" id="1_rf6fy"]
 
@@ -15,6 +15,19 @@ expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3r5xh"]
 bg_color = Color(0, 0, 0, 0.54902)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 20.0
+expand_margin_top = 5.0
+expand_margin_right = 20.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mmi3"]
+bg_color = Color(0, 0, 0, 0.690196)
+border_color = Color(0, 0, 0, 0)
 border_blend = true
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -63,6 +76,7 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_m4gfe")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3r5xh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5mmi3")
 text = "START!"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/startButton" to="." method="_on_button_pressed"]
