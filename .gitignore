@@ -4,6 +4,9 @@
 # Godot editor temp files
 *.tmp
 
+# Godot GDExtension editor lock/shadow copies (e.g. ~libfoo.dll on Windows)
+~*
+
 # Exported builds
 build/
 export/
