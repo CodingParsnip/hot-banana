@@ -1,3 +1,3 @@
 extends StaticBody2D
-
-var type = "obstacle"
+## A single pipe. Membership in the "obstacles" group (set on the scene root)
+## is what marks it as lethal — see player.gd.

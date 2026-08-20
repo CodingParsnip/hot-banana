@@ -2,7 +2,7 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sbup8"]
 
-[node name="floor" type="StaticBody2D"]
+[node name="floor" type="StaticBody2D" groups=["floor"]]
 position = Vector2(-109, 152)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

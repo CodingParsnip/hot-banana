@@ -1,60 +1,43 @@
+# Hot Banana 🍌
 
-### Localised READMEs
- - [简体中文](READMECN.md) (Simplified Chinese)
+A Flappy Bird–style arcade game built in **Godot 4.2**. Guide a nervous banana
+through an endless gauntlet of pipes — one tap keeps it aloft, gravity does the
+rest.
 
+## Play
 
-# TODO Manager
+- **Flap:** `Space`, `Up`, or left mouse button
+- Clear each pipe pair to score. Hit a pipe or the ground and it's over.
+- Your best score is saved between runs.
 
-![example_image](https://github.com/OrigamiDev-Pete/TODO_Manager/blob/main/addons/Todo_Manager/doc/images/example1.png)
+## Running the project
 
-## Simple and flexible
+1. Install [Godot 4.2](https://godotengine.org/download).
+2. Open `project.godot` in the Godot editor.
+3. Press **F5** (Play) or the ▶ button.
 
-- Supports GDScript, C# and GDNative
-- Seamlessly integrated into the Godot dock
-- Lenient syntax. Write TODOs that suit your style
-- Quickly jump to lines and launch external editors
+## How it fits together
 
-## Customizable
+| File | Role |
+| --- | --- |
+| `main.gd` / `main.tscn` | Top-level flow: start screen, countdown, scoring, death/retry. |
+| `player.gd` / `player.tscn` | The banana — movement, flapping, and death on collision. |
+| `spawner.gd` | Procedural, endless pipe spawning ahead of the player. |
+| `game_camera.gd` | Follows the player horizontally. |
+| `obstacle.tscn` / `duo_obstacle.tscn` | A single pipe / a top-and-bottom pipe pair. |
+| `floor.tscn` | The ground (an infinite world boundary). |
+| `start_screen.tscn` / `death_screen.tscn` | Menu and game-over overlays. |
 
-![settings_example](https://github.com/OrigamiDev-Pete/TODO_Manager/blob/main/addons/Todo_Manager/doc/images/example2.png)
+### Tuning difficulty
 
-- Add your own RegEx patterns
-- Set colours to your liking
+Most feel-related knobs live at the top of `spawner.gd` (pipe spacing, gap
+height range, spawn/despawn distances) and `player.gd` (`RUN_SPEED`, `ACCEL`,
+`JUMP_VELOCITY`). They're exported where useful, so you can also tweak them live
+from the Inspector on the `ObstacleSpawner` node.
 
-## Installation
+## Status
 
-### Method 1 (Godot Asset Library)
-
-The most simple way to get started using TODO Manager is to use Godot's inbuilt Asset Library to install the plugin into your project.
-
-#### Step 1
-
-Find TODO Manager in the Godot Asset Library.
-![AssetLib image](https://github.com/OrigamiDev-Pete/TODO_Manager/blob/main/addons/Todo_Manager/doc/images/Instruct1.png)
-
-#### Step 2
-
-Install the package. You may want to untick the /doc folder at this point as it is not necessary for the functions of the plugin.
-![Filestrcture image](https://github.com/OrigamiDev-Pete/TODO_Manager/blob/main/addons/Todo_Manager/doc/images/Instruct3.png)
-
-#### Step 4
-
-Enable the plugin in the project settings.
-![Project image](https://github.com/OrigamiDev-Pete/TODO_Manager/blob/main/addons/Todo_Manager/doc/images/Instruct4.png)
-
-### Method 2 (GitHub)
-
-#### Step 1
-
-Click Download ZIP from the 'Code' dropdown.
-![GitHub image](https://github.com/OrigamiDev-Pete/TODO_Manager/blob/main/addons/Todo_Manager/doc/images/Instruct5.png)
-
-#### Step 2
-
-- Unzip the file and add it into your project folder. Make sure 'addons' is a subdirectory of res://
-- DO NOT change the name of the 'addons' or 'Todo_Manager' folders as this will break the saving and loading of your settings.
-
-#### Step 3
-
-Enable the plugin in the project settings.
-![Project image](https://github.com/OrigamiDev-Pete/TODO_Manager/blob/main/addons/Todo_Manager/doc/images/Instruct4.png)
+Core endless loop is in place: procedural obstacles, scoring, persistent high
+score, camera follow, and a countdown → play → game-over → retry cycle. A
+signature "hot banana" mechanic (e.g. a heat/overheat meter) is the planned next
+step to set it apart from a plain Flappy clone.

@@ -1,48 +1,86 @@
 extends Node
 
-var countdown = 3
+const HIGH_SCORE_PATH := "user://highscore.save"
 
-# Called when the node enters the scene tree for the first time.
-# Player and mobs start disabled
-func _ready():
+var score := 0
+var high_score := 0
+var _countdown := 3
+
+
+func _ready() -> void:
+	high_score = _load_high_score()
+
 	$deathScreen.visible = false
 	$startScreen.visible = true
-	$Player.connect("hit", _on_player_hit)
 	$Player.visible = false
 	$StartingLine.visible = false
-	
-	$startScreen.connect("startPressed", _on_start_pressed)
+	$HUD/ScoreLabel.hide()
+	$HUD/countdownTimer.hide()
+
+	$Player.hit.connect(_on_player_hit)
+	$startScreen.startPressed.connect(_on_start_pressed)
+	$ObstacleSpawner.scored.connect(_on_scored)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-		get_node("countdownTimer").text = str(int(countdown + 1))
-
-# Make scene ready for gameplay (render player, mobs, lives, points, etc)
-func start_game():
-	$Player.freeze = false
-	$Player.visible = true
-	$StartingLine.visible = true
-	print("ASS")
-	
-
-func _on_player_hit(): 
-	$deathScreen.visible = true
-
-func _on_start_pressed():
+func _on_start_pressed() -> void:
 	$startScreen.visible = false
-	
-	get_node("countdownTimer").text = str(int(countdown))
-	get_node("countdownTimer").show()
-	
-	
 	$Player.visible = true
 	$StartingLine.visible = true
-	
+
+	_countdown = 3
+	$HUD/countdownTimer.text = str(_countdown)
+	$HUD/countdownTimer.show()
 	$startTimer.start()
 
-func _on_start_timer_timeout():
-	start_game()
-	get_node("countdownTimer").hide() 
+
+func _on_start_timer_timeout() -> void:
+	_countdown -= 1
+	if _countdown > 0:
+		$HUD/countdownTimer.text = str(_countdown)
+	elif _countdown == 0:
+		$HUD/countdownTimer.text = "GO!"
+	else:
+		$startTimer.stop()
+		$HUD/countdownTimer.hide()
+		_start_game()
 
 
+# Hand control to the player and start showing the score.
+func _start_game() -> void:
+	$Player.freeze = false
+	score = 0
+	$HUD/ScoreLabel.text = "0"
+	$HUD/ScoreLabel.show()
+
+
+func _on_scored() -> void:
+	score += 1
+	$HUD/ScoreLabel.text = str(score)
+
+
+func _on_player_hit() -> void:
+	if score > high_score:
+		high_score = score
+		_save_high_score(high_score)
+	$HUD/ScoreLabel.hide()
+	$deathScreen.set_scores(score, high_score)
+	$deathScreen.visible = true
+
+
+func _load_high_score() -> int:
+	if not FileAccess.file_exists(HIGH_SCORE_PATH):
+		return 0
+	var f := FileAccess.open(HIGH_SCORE_PATH, FileAccess.READ)
+	if f == null:
+		return 0
+	var value := int(f.get_line())
+	f.close()
+	return value
+
+
+func _save_high_score(value: int) -> void:
+	var f := FileAccess.open(HIGH_SCORE_PATH, FileAccess.WRITE)
+	if f == null:
+		return
+	f.store_line(str(value))
+	f.close()

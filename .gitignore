@@ -1,2 +1,16 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Godot editor temp files
+*.tmp
+
+# Exported builds
+build/
+export/
+*.exe
+*.pck
+*.zip
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

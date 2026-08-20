@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cq7vu63lchyyb"]
+[gd_scene load_steps=10 format=3 uid="uid://cq7vu63lchyyb"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_26r1g"]
+[ext_resource type="Script" path="res://spawner.gd" id="9_spawn"]
 [ext_resource type="PackedScene" uid="uid://2odluelo2gov" path="res://starting_line.tscn" id="2_bhw84"]
 [ext_resource type="PackedScene" uid="uid://g3dapvh8ixxg" path="res://player.tscn" id="2_w7rao"]
 [ext_resource type="PackedScene" uid="uid://nybgv6crdtve" path="res://floor.tscn" id="3_1tdoo"]
@@ -28,9 +29,11 @@ script = ExtResource("6_l5ai2")
 
 [node name="startScreen" parent="." instance=ExtResource("5_4jnh6")]
 
+[node name="ObstacleSpawner" type="Node2D" parent="."]
+script = ExtResource("9_spawn")
+
 [node name="startTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
+wait_time = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -43,7 +46,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.698039, 0.811765, 1)
 
-[node name="countdownTimer" type="Label" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 1
+
+[node name="countdownTimer" type="Label" parent="HUD"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -56,5 +74,6 @@ offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 55
+horizontal_alignment = 1
 
 [connection signal="timeout" from="startTimer" to="." method="_on_start_timer_timeout"]
