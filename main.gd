@@ -5,10 +5,15 @@ const HIGH_SCORE_PATH := "user://highscore.save"
 const COOL_BAR_COLOR := Color(0.25, 0.8, 0.3)
 const HOT_BAR_COLOR := Color(0.9, 0.15, 0.1)
 
+# Survives scene reload (it's on the script, not the instance): when true, the
+# next load skips the menu and drops straight into a run.
+static var _autostart := false
+
 var score := 0
 var high_score := 0
 var _countdown := 3
 var _heat_fill: StyleBoxFlat
+var _playing := false
 
 
 func _ready() -> void:
@@ -29,6 +34,30 @@ func _ready() -> void:
 	$Player.heat_changed.connect(_on_heat_changed)
 	$startScreen.startPressed.connect(_on_start_pressed)
 	$ObstacleSpawner.scored.connect(_on_scored)
+	$deathScreen.play_again.connect(_restart_run)
+	$deathScreen.main_menu.connect(_go_to_menu)
+	$PauseMenu.restart_run.connect(_restart_run)
+	$PauseMenu.to_main_menu.connect(_go_to_menu)
+
+	if _autostart:
+		_autostart = false
+		_on_start_pressed()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and _playing and not get_tree().paused:
+		$PauseMenu.open()
+
+
+# Reload straight into a new run (Play again / Restart).
+func _restart_run() -> void:
+	_autostart = true
+	get_tree().reload_current_scene()
+
+
+# Reload back to the main menu (Main menu buttons).
+func _go_to_menu() -> void:
+	get_tree().reload_current_scene()
 
 
 func _style_heat_bar() -> void:
@@ -79,6 +108,7 @@ func _start_game() -> void:
 	$HUD/ScoreLabel.show()
 	$HUD/HeatBar.show()
 	$HUD/HeatLabel.show()
+	_playing = true
 
 
 func _on_scored() -> void:
@@ -87,6 +117,7 @@ func _on_scored() -> void:
 
 
 func _on_player_hit(cause: String) -> void:
+	_playing = false
 	if score > high_score:
 		high_score = score
 		_save_high_score(high_score)

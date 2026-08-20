@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq7vu63lchyyb"]
+[gd_scene load_steps=11 format=3 uid="uid://cq7vu63lchyyb"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_26r1g"]
 [ext_resource type="Script" path="res://spawner.gd" id="9_spawn"]
+[ext_resource type="PackedScene" uid="uid://pausemenu00001" path="res://pause_menu.tscn" id="10_pause"]
 [ext_resource type="PackedScene" uid="uid://2odluelo2gov" path="res://starting_line.tscn" id="2_bhw84"]
 [ext_resource type="PackedScene" uid="uid://g3dapvh8ixxg" path="res://player.tscn" id="2_w7rao"]
 [ext_resource type="PackedScene" uid="uid://nybgv6crdtve" path="res://floor.tscn" id="3_1tdoo"]
@@ -93,5 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 55
 horizontal_alignment = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_pause")]
 
 [connection signal="timeout" from="startTimer" to="." method="_on_start_timer_timeout"]
