@@ -21,8 +21,8 @@ func _ready() -> void:
 
 	_style_heat_bar()
 
-	$deathScreen.visible = false
-	$startScreen.visible = true
+	$Menus/deathScreen.visible = false
+	$Menus/startScreen.visible = true
 	$Player.visible = false
 	$StartingLine.visible = false
 	$HUD/ScoreLabel.hide()
@@ -32,10 +32,10 @@ func _ready() -> void:
 
 	$Player.hit.connect(_on_player_hit)
 	$Player.heat_changed.connect(_on_heat_changed)
-	$startScreen.startPressed.connect(_on_start_pressed)
+	$Menus/startScreen.startPressed.connect(_on_start_pressed)
 	$ObstacleSpawner.scored.connect(_on_scored)
-	$deathScreen.play_again.connect(_restart_run)
-	$deathScreen.main_menu.connect(_go_to_menu)
+	$Menus/deathScreen.play_again.connect(_restart_run)
+	$Menus/deathScreen.main_menu.connect(_go_to_menu)
 	$PauseMenu.restart_run.connect(_restart_run)
 	$PauseMenu.to_main_menu.connect(_go_to_menu)
 
@@ -78,7 +78,7 @@ func _on_heat_changed(ratio: float) -> void:
 
 
 func _on_start_pressed() -> void:
-	$startScreen.visible = false
+	$Menus/startScreen.visible = false
 	$Player.visible = true
 	$StartingLine.visible = true
 
@@ -122,8 +122,8 @@ func _on_player_hit(cause: String) -> void:
 		high_score = score
 		_save_high_score(high_score)
 	$HUD/ScoreLabel.hide()
-	$deathScreen.set_scores(score, high_score, cause)
-	$deathScreen.visible = true
+	$Menus/deathScreen.set_scores(score, high_score, cause)
+	$Menus/deathScreen.visible = true
 
 
 func _load_high_score() -> int:
