@@ -7,6 +7,7 @@ rest.
 ## Play
 
 - **Flap:** `Space`, `Up`, or left mouse button
+- **Pause:** `Esc` — resume (with a 3-2-1 countdown), restart, or quit to the menu
 - Clear each pipe pair to score. Hit a pipe or the ground and it's over.
 - **Watch the heat.** Every flap heats the banana up; gliding cools it down.
   Let it **overheat** and it bursts — so you can't just spam-flap to stay safe.
