@@ -8,6 +8,9 @@ rest.
 
 - **Flap:** `Space`, `Up`, or left mouse button
 - Clear each pipe pair to score. Hit a pipe or the ground and it's over.
+- **Watch the heat.** Every flap heats the banana up; gliding cools it down.
+  Let it **overheat** and it bursts — so you can't just spam-flap to stay safe.
+  The banana reddens and the HEAT bar fills as it climbs.
 - Your best score is saved between runs.
 
 ## Running the project
@@ -32,12 +35,14 @@ rest.
 
 Most feel-related knobs live at the top of `spawner.gd` (pipe spacing, gap
 height range, spawn/despawn distances) and `player.gd` (`RUN_SPEED`, `ACCEL`,
-`JUMP_VELOCITY`). They're exported where useful, so you can also tweak them live
-from the Inspector on the `ObstacleSpawner` node.
+`JUMP_VELOCITY`, and the heat tuning `heat_per_flap` / `cool_rate`). They're
+exported where useful, so you can also tweak them live from the Inspector on the
+`Player` and `ObstacleSpawner` nodes.
 
 ## Status
 
 Core endless loop is in place: procedural obstacles, scoring, persistent high
-score, camera follow, and a countdown → play → game-over → retry cycle. A
-signature "hot banana" mechanic (e.g. a heat/overheat meter) is the planned next
-step to set it apart from a plain Flappy clone.
+score, camera follow, and a countdown → play → game-over → retry cycle. The
+signature **heat mechanic** is implemented — flapping heats the banana, gliding
+cools it, and overheating is a second failure state — which is what sets Hot
+Banana apart from a plain Flappy clone.
